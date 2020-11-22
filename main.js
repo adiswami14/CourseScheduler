@@ -1,4 +1,6 @@
-import testObject from './testObject.js'
+import Course from './modules/course.js'
+import Schedule from './modules/schedule.js'
 
-var x = new testObject("e");
-x.statement();
+let currCourse = new Course("CS126", "Woodley", new Date());
+currCourse.output();
+let schedule = new Schedule();
