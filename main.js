@@ -1,3 +1,4 @@
-var b = document.createElement("button");
-b.innerHTML = "test";
-document.body.appendChild(b);
+import testObject from './testObject.js'
+
+var x = new testObject("e");
+x.statement();
