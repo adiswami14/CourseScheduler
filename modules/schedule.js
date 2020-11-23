@@ -1,8 +1,9 @@
 class Schedule {
     constructor() {
         const weekdays = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+        let dataTable = document.createElement("table");
+        dataTable.id = "datatable";
         function initializeSchedule() {
-            let dataTable = document.createElement("table");
             createTable(dataTable);
             document.body.appendChild(dataTable);
         }
@@ -38,6 +39,21 @@ class Schedule {
             }
         }
         initializeSchedule();
+    }
+    addCourse(course) {
+        console.log("add couse");
+        let table = document.getElementById("datatable");
+        for(var i =0; i<table.rows.length; i++) {
+            for(var j = 0; j< table.rows[i].cells.length; j++) {
+                if(i>=1 && j>0) {
+                    //alert(course.date);
+                    //alert(table.rows[i].cells[0].innerHTML);
+                    if(table.rows[i].cells[0].innerHTML == course.date) {
+                        table.rows[i].cells[j].innerHTML = course.name+" "+course.profName;
+                    }
+                }
+            }
+        }
     }
 }
 export default Schedule;
