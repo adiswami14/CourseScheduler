@@ -7,6 +7,7 @@ class Schedule {
             document.body.appendChild(dataTable);
         }
         function createTable(table) {
+            let hourCount =0;
             for(let i =0; i<12;i++) {
                 let row = table.insertRow();
                 for(let j=0;j<8; j++) {
@@ -15,7 +16,22 @@ class Schedule {
                     if(j>0 && i == 0) {
                         text = document.createTextNode(weekdays[j-1]);
                     } else if(j == 0 && i>0) {
-                        text = document.createTextNode("Time");
+                        if(hourCount<12) {
+                            var currHour=hourCount+8;
+                            var currPlusOne = hourCount+9;
+
+                            if(currHour > 12) {
+                                currHour -= 12;
+                            }
+                            if(currPlusOne > 12) {
+                                currPlusOne -= 12;
+                            }
+
+                            if(hourCount < 12) {
+                                text = document.createTextNode(currHour+":00 - "+currPlusOne+":00");
+                                hourCount++;
+                            }
+                        }
                     } else text = document.createTextNode("");
                     cell.appendChild(text);
                 }
