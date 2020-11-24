@@ -8,10 +8,11 @@ function outputCourse() {
     let profName = document.getElementById('profname').value;
     let startTime = document.getElementById('starttime').value;
     let endTime = document.getElementById('endtime').value;
+    let daysTaken = document.getElementById('days').value;
     var reg = /^\d{2}:\d{2}$/;
-    if(courseName != "" && profName != "" && reg.test(startTime) && reg.test(endTime)) {
-        let currCourse = new Course(courseName, profName, startTime, endTime);
-        //currCourse.output();
+    var capReg = /^[A-Z]+$/;
+    if(courseName != "" && profName != "" && reg.test(startTime) && reg.test(endTime) && capReg.test(daysTaken) && endTime>startTime) {
+        let currCourse = new Course(courseName, profName, startTime, endTime, daysTaken);
         schedule.addCourse(currCourse);
     } else alert("Please fill out the fields given properly!");
 }
