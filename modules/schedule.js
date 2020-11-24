@@ -21,12 +21,14 @@ class Schedule {
                             var currHour=hourCount+8;
                             var currPlusOne = hourCount+9;
 
-                            if(currHour > 12) {
+                            /*if(currHour > 12) {
                                 currHour -= 12;
-                            }
-                            if(currPlusOne > 12) {
+                            }*/
+                            if(currHour<=9) currHour = "0"+currHour;
+                            /*if(currPlusOne > 12) {
                                 currPlusOne -= 12;
-                            }
+                            }*/
+                            if(currPlusOne<=9) currPlusOne = "0"+currPlusOne;
 
                             if(hourCount < 12) {
                                 text = document.createTextNode(currHour+":00 - "+currPlusOne+":00");
@@ -41,14 +43,17 @@ class Schedule {
         initializeSchedule();
     }
     addCourse(course) {
-        console.log("add couse");
         let table = document.getElementById("datatable");
         for(var i =0; i<table.rows.length; i++) {
             for(var j = 0; j< table.rows[i].cells.length; j++) {
                 if(i>=1 && j>0) {
-                    //alert(course.date);
-                    //alert(table.rows[i].cells[0].innerHTML);
-                    if(table.rows[i].cells[0].innerHTML == course.date) {
+                    let str = table.rows[i].cells[0].innerHTML;
+                    let dateStart = str.substring(0,5);
+                    let dateEnd = str.substring(str.length-5, str.length)
+                    if(course.startdate === dateStart || course.enddate === dateEnd )  {
+                        table.rows[i].cells[j].innerHTML = course.name+" "+course.profName;
+                    } else if (dateStart>=course.startdate && dateEnd<=course.enddate) {
+                        console.log(dateStart+" "+course.startdate +"    "+dateEnd+" "+course.enddate);
                         table.rows[i].cells[j].innerHTML = course.name+" "+course.profName;
                     }
                 }

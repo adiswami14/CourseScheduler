@@ -10,8 +10,8 @@ function outputCourse() {
     let endTime = document.getElementById('endtime').value;
     var reg = /^\d{2}:\d{2}$/;
     if(courseName != "" && profName != "" && reg.test(startTime) && reg.test(endTime)) {
-        let currCourse = new Course(courseName, profName, startTime+" - "+endTime);
-        currCourse.output();
+        let currCourse = new Course(courseName, profName, startTime, endTime);
+        //currCourse.output();
         schedule.addCourse(currCourse);
     } else alert("Please fill out the fields given properly!");
 }
