@@ -9,21 +9,27 @@ function outputCourse() {
     let startTime = document.getElementById('starttime').value;
     let endTime = document.getElementById('endtime').value;
     let daysTaken = document.getElementById('days').value;
-    var reg = /^\d{2}:\d{2}$/;
+    var reg = /^\d{1,2}:\d{2}$/;
     var capReg = /^[A-Z]+$/;
     if(courseName != "" && profName != "" && reg.test(startTime) && reg.test(endTime) && capReg.test(daysTaken) 
-    && convertToMilitaryTime(endTime)>startTime) {
+    && convertToMilitaryTime(addZeros(endTime))>addZeros(startTime)) {
         let currCourse = new Course(courseName, profName, startTime, endTime, daysTaken);
         schedule.addCourse(currCourse);
     } else alert("Please fill out the fields given properly!");
 }
 function convertToMilitaryTime(time) {
     let militaryTime;
-    if(time < "08:00") {
+    if(time < "8:00") {
         militaryTime = (parseInt(time)+12)+":00";
-    }
-    console.log(militaryTime);
+    } else return time;
     return militaryTime;
+}
+function addZeros(time) {
+    let str = time.substring(0,2);
+    if(str.charAt(1) === ':') {
+        time = "0"+time;
+    }
+    return time;
 }
 
 document.getElementById('submit-button').addEventListener('click', outputCourse, true);

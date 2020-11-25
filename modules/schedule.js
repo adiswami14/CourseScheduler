@@ -21,9 +21,7 @@ class Schedule {
                             var currHour=hourCount+8;
                             var currPlusOne = hourCount+9;
                             if(currHour>12) currHour-=12;
-                            if(currHour<=9) currHour = "0"+currHour;
                             if(currPlusOne>12) currPlusOne-=12;
-                            if(currPlusOne<=9) currPlusOne = "0"+currPlusOne;
 
                             if(hourCount < 12) {
                                 text = document.createTextNode(currHour+":00 - "+currPlusOne+":00");
@@ -43,8 +41,8 @@ class Schedule {
         let startRow, endRow;
         for(var i =0; i<table.rows.length; i++) {
             let str = table.rows[i].cells[0].innerHTML;
-            let dateStart = str.substring(0,5);
-            let dateEnd = str.substring(str.length-5, str.length)
+            let dateStart = str.substring(0,5).trim();
+            let dateEnd = str.substring(str.length-5, str.length).trim();
             if(course.startdate === dateStart )  {
                 startRow = i;
             }
