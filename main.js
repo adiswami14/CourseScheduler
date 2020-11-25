@@ -11,7 +11,8 @@ function outputCourse() {
     let daysTaken = document.getElementById('days').value;
     var reg = /^\d{1,2}:\d{2}$/;
     var capReg = /^[A-Z]+$/;
-    if(courseName != "" && profName != "" && reg.test(startTime) && reg.test(endTime) && capReg.test(daysTaken) 
+    var courseReg = /[A-Z]{2,}\d{3}$/; 
+    if(courseReg.test(courseName) && profName != "" && reg.test(startTime) && reg.test(endTime) && capReg.test(daysTaken) 
     && convertToMilitaryTime(addZeros(endTime))>addZeros(startTime)) {
         let currCourse = new Course(courseName, profName, startTime, endTime, daysTaken);
         schedule.addCourse(currCourse);

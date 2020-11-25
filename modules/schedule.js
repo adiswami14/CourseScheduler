@@ -53,7 +53,7 @@ class Schedule {
         for(let k = 0;k<days.length;k++) {
             let j = days[k];
             for(let i = startRow; i<=endRow;i++) {
-                table.rows[i].cells[j].innerHTML = course.name+" "+course.profName;
+                table.rows[i].cells[j].innerHTML = "Course Name: "+course.name+"<br>Professor: "+course.profName;
             }
         }
     }
