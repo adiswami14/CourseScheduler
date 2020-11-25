@@ -20,7 +20,9 @@ class Schedule {
                         if(hourCount<12) {
                             var currHour=hourCount+8;
                             var currPlusOne = hourCount+9;
+                            if(currHour>12) currHour-=12;
                             if(currHour<=9) currHour = "0"+currHour;
+                            if(currPlusOne>12) currPlusOne-=12;
                             if(currPlusOne<=9) currPlusOne = "0"+currPlusOne;
 
                             if(hourCount < 12) {
@@ -38,17 +40,22 @@ class Schedule {
     addCourse(course) {
         let table = document.getElementById("datatable");
         let days = this.weekOfDay(course);
+        let startRow, endRow;
         for(var i =0; i<table.rows.length; i++) {
-            for(var k = 0; k< days.length;k++) {
-                let j = days[k];
-                let str = table.rows[i].cells[0].innerHTML;
-                let dateStart = str.substring(0,5);
-                let dateEnd = str.substring(str.length-5, str.length)
-                if(course.startdate === dateStart || course.enddate === dateEnd )  {
-                    table.rows[i].cells[j].innerHTML = course.name+" "+course.profName;
-                } else if (dateStart>=course.startdate && dateEnd<=course.enddate) {
-                    table.rows[i].cells[j].innerHTML = course.name+" "+course.profName;
-                }
+            let str = table.rows[i].cells[0].innerHTML;
+            let dateStart = str.substring(0,5);
+            let dateEnd = str.substring(str.length-5, str.length)
+            if(course.startdate === dateStart )  {
+                startRow = i;
+            }
+            if(course.enddate === dateEnd )  {
+                endRow = i;
+            }
+        }
+        for(let k = 0;k<days.length;k++) {
+            let j = days[k];
+            for(let i = startRow; i<=endRow;i++) {
+                table.rows[i].cells[j].innerHTML = course.name+" "+course.profName;
             }
         }
     }
