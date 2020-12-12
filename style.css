@@ -12,6 +12,23 @@ table, th, td{
     margin-right: auto;
 }
 
+.normal {
+  border-style: solid;
+}
+
+.hide-up {
+  border-top-style: hidden;
+}
+
+.hide-down {
+  border-bottom-style: hidden;
+}
+
+.hide-up-down {
+  border-top-style: hidden;
+  border-bottom-style: hidden;
+}
+
 #submit-button {
     border-radius: 10px;
     font-size: 20px;

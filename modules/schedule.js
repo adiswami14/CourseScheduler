@@ -50,10 +50,27 @@ class Schedule {
                 endRow = i;
             }
         }
+        let multiple_rows = false;
+        if(endRow-startRow>=1) {
+            multiple_rows = true;
+        }
+        this.reInitializeTable(table);
         for(let k = 0;k<days.length;k++) {
             let j = days[k];
             for(let i = startRow; i<=endRow;i++) {
-                table.rows[i].cells[j].innerHTML = "Course Name: "+course.name+"<br>Professor: "+course.profName;
+                if(multiple_rows) {
+                    table.rows[startRow].cells[j].className = "hide-down";
+                    table.rows[i].cells[j].className = "hide-up-down";
+                    table.rows[endRow].cells[j].className = "hide-up";
+                }
+                table.rows[startRow].cells[j].innerHTML = "Course Name: "+course.name+"<br>Professor: "+course.profName;
+            }
+        }
+    }
+    reInitializeTable(table) {
+        for(var i = 0; i< table.rows.length; i++) {
+            for (var j  = 0; j<table.rows[0].cells.length;j++) {
+                table.rows[i].cells[j].className = "normal";
             }
         }
     }
